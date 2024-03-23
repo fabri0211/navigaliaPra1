@@ -6,6 +6,13 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 /* Basic */
+
+.logo1 {
+  position: relative;
+  opacity: 0.7;
+  top: 10px;
+  left: 10px;
+}
 @-ms-viewport {
   width: device-width; }
 body {

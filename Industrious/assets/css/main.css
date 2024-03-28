@@ -803,7 +803,7 @@ table.alt tbody tr td {
 /* Testimonials */
 .testimonials {
   margin: 2.5rem 0;
-  width: 100%;
+  width: 300%;
   display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
@@ -952,7 +952,7 @@ table.alt tbody tr td {
 
 .testimonials .content {
   background: #ffffff;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025); }
+  box-shadow: 0px px 4px 1px rgba(0, 0, 0, 0.025); }
   .testimonials .content .credit strong {
     color: #ce1b28; }
 

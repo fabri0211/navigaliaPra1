@@ -6,7 +6,9 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 /* Basic */
-
+html, body {
+  overflow-x: hidden; 
+}
 .logo1 {
   position: relative;
   opacity: 0.7;
@@ -29,12 +31,12 @@
   bottom: 100%;
   left: 0;
   width: 100%;
-  height: 50px; /* Ajusta la altura según sea necesario */
-  background: linear-gradient(to top, rgba(125, 207, 248, 0.7), rgba(255, 255, 255, 0)); /* Ajusta los colores según sea necesario */
+  height: 50px; 
+  background: linear-gradient(to top, rgba(125, 207, 248, 0.7), rgba(255, 255, 255, 0)); 
   z-index: 1;
 }
 #imagenBase {
-  transition: opacity 0.5s ease; /* Transición de opacidad durante 0.5 segundos */
+  transition: opacity 0.5s ease; 
 }
 
 @-ms-viewport {

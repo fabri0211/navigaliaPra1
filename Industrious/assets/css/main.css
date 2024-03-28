@@ -16,12 +16,13 @@
 
 #barco {
   position: absolute;
-  width: 100px; /* ajusta el tamaño según sea necesario */
-  z-index: 1001; /* asegura que el barco esté sobre la imagen de fondo */
-  pointer-events: none; /* evita que el barco interrumpa la interacción con otros elementos */
-  top: calc(100% - 460px); /* Coloca el barco justo encima del borde superior del #cta */
-  left: 50%; /* Ajusta la posición horizontal del barco al centro */
-  transform: translateX(-50%); /* Centra horizontalmente el barco */
+  width: 100px; 
+  z-index: 1001; 
+  pointer-events: none; 
+  top: calc(100% - 460px); 
+  left: 50%; 
+  transform: translateX(-50%); 
+  transition: transform 0.5s ease; 
 }
 
 

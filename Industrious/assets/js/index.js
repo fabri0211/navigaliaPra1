@@ -51,3 +51,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateBarcoPosition();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    var imagenesRutas = {
+        ruta1: "images/ruta-MON.jpg",
+        ruta2: "images/ruta-MLL.jpg",
+        ruta3: "images/ruta-ROM.jpg",
+        ruta4:  "images/ruta-ATH.jpg",
+        ruta5: "images/ruta-BCN.jpg"
+    };
+
+    var imagenBase = document.getElementById("imagenBase");
+
+    // Función para restaurar la imagen base
+    function restaurarImagenBase() {
+        imagenBase.src = "images/mapabase.jpg"; // Ruta de la imagen base
+    }
+
+    // Agregar eventos a cada ruta para cambiar la imagen al pasar el cursor sobre ella
+    var rutas = document.getElementsByClassName("ruta");
+    for (var i = 0; i < rutas.length; i++) {
+        rutas[i].addEventListener("mouseover", function () {
+            var idRuta = this.id;
+            imagenBase.src = imagenesRutas[idRuta];
+        });
+
+        // Restaurar la imagen base al quitar el cursor de encima de la ruta
+        rutas[i].addEventListener("mouseout", restaurarImagenBase);
+    }
+});

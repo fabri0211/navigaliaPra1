@@ -33,7 +33,9 @@
   background: linear-gradient(to top, rgba(125, 207, 248, 0.7), rgba(255, 255, 255, 0)); /* Ajusta los colores según sea necesario */
   z-index: 1;
 }
-
+#imagenBase {
+  transition: opacity 0.5s ease; /* Transición de opacidad durante 0.5 segundos */
+}
 
 @-ms-viewport {
   width: device-width; }

@@ -37,9 +37,14 @@ html, body {
 }
 
 #imagenBase {
-  transition: opacity 0.5s ease; 
+  transition: transform 0.2s ease, opacity 0.5s ease; /* Se agrega la transición de opacidad */
+  opacity: 1; /* Establecer la opacidad inicial */
 }
 
+#brujula {
+  width: 150px;
+  height: auto;
+}
 .author img {
   max-width: 250%;
   height: auto;

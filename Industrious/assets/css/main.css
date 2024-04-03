@@ -55,63 +55,66 @@ html, body {
 
 .barcos-section {
   padding: 20px;
+  
 }
-
+/* CSS dels nostres vaixells*/
 .barcos-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  
 }
 
-.row {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 1200px;
+.barco-inner {
+  
+  padding: 10px;
+  text-align: center;
+  background-color: white; /* Establece el fondo en blanco */
+  min-height: 200px; 
+}
+.barco-inner img { 
+  display: block;
+  margin: 0 auto; /* Centra horizontalmente la imagen */
+  max-width: 80%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+.barco-inner .barco-title { /* Propiedades titulos de barcos */
+  margin-bottom: 5px;
+  font-weight: bold; 
+  text-transform: lowercase;
 }
 
 .barco {
-  width: 30%;
-  height: 300px; /* Ajusta la altura de los cuadros */
-  text-align: center;
-  margin: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden; /* Para que la descripción no sobresalga */
-  display: flex; /* Utiliza flexbox */
-  flex-direction: column; /* Alinear elementos verticalmente */
-  justify-content: center; /* Centra verticalmente */
+  width: calc(100% / 3 - 20px); /* Ajusta el ancho de cada contenedor .barco */
+  margin: 10px; /* Añade un margen entre los contenedores .barco */
 }
 
-.barco img {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%; /* Ajusta el tamaño máximo de la imagen */
-  height: auto; /* Altura automática para mantener la proporción */
-  width: 100%;
-  border-radius: 5px;
-  transition: transform 0.3s ease-in-out; /* Añade una transición al hacer hover */
-}
-
-
-.barco-inner {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  padding: 10px;
-}
-
-.barco p {
+.barco p { /* Propiedades descripciones de barcos */
   padding: 10px;
   margin: 0;
-  font-size: 14px; /* Ajusta el tamaño del texto */
+  font-size: 14px; 
 }
 
-.barco:hover img {
-  transform: scale(1.1); /* Aumenta ligeramente el tamaño de la imagen al hacer hover */
+.barco:hover img { /* Aumenta tamaño de la imagen al hacer hover */
+  transform: scale(1.1); 
+  
+}
+.table-container {
+  margin-left: 25%;
+  margin-right: 25%
+}
+
+
+table {
+  max-width: 800px; /* Establece un ancho máximo para la tabla */
+  width: 100%; /* Ajusta el ancho de la tabla */
+  border-collapse: collapse; /* Elimina los bordes dobles entre celdas */
+  background-color: transparent; /* Establece el fondo transparente */
+  border: none; /* Elimina cualquier borde */
+}
+
+table td {
+  border: none; /* Elimina los bordes de las celdas */
 }
 /* CSS de la plantilla: */
 @-ms-viewport {

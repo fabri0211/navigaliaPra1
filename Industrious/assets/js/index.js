@@ -1,9 +1,11 @@
+
+// Vaixell
 document.addEventListener("DOMContentLoaded", function() {
     var barco = document.getElementById("barco");
 
     document.addEventListener("mousemove", function(event) {
         var posX = event.clientX;
-        var posY = barco.offsetTop; // Obtenemos la posición vertical actual del barco
+        var posY = barco.offsetTop; 
 
         barco.style.left = posX + "px";
         barco.style.top = posY + "px";
@@ -27,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     var barco = document.getElementById("barco");
     var mouseX = 0;
-    var easingFactor = 0.1; // Ajusta este valor para controlar la velocidad de desaceleración
+    var easingFactor = 0.1; 
     var barcoX = barco.offsetLeft + barco.offsetWidth / 2;
 
     document.addEventListener("mousemove", function(event) {
@@ -38,10 +40,10 @@ document.addEventListener("DOMContentLoaded", function() {
         var dx = mouseX - barcoX;
         var distance = Math.abs(dx);
         
-        // Aplica la interpolación y la desaceleración
+        
         if (distance > 1) {
             var targetX = barcoX + dx * easingFactor;
-            barcoX += (targetX - barcoX) * easingFactor; // Gradualmente ajusta la posición del barco
+            barcoX += (targetX - barcoX) * easingFactor; 
 
             barco.style.left = barcoX - barco.offsetWidth / 2 + "px";
         }
@@ -52,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateBarcoPosition();
 });
 
+// Rutes
 document.addEventListener("DOMContentLoaded", function () {
     var imagenesRutas = {
         ruta1: "images/ruta-MON.jpg",
@@ -62,31 +65,33 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     var imagenBase = document.getElementById("imagenBase");
-    var imagenBaseSrc = imagenBase.src; // Guardar la fuente original de la imagen base
+    var imagenBaseSrc = imagenBase.src; 
 
-    // Función para cambiar la imagen base
+   
     function cambiarImagen(ruta) {
-        imagenBase.style.opacity = "0"; // Iniciar transición de opacidad
-        imagenBase.src = ruta; // Cambiar la imagen base
+        imagenBase.style.opacity = "0"; 
+        imagenBase.src = ruta; 
         setTimeout(function () {
-            imagenBase.style.opacity = "1"; // Restaurar opacidad después de la transición
-        }, 100); // Esperar un breve período antes de restaurar la opacidad
+            imagenBase.style.opacity = "1"; 
+        }, 100); 
     }
 
-    // Controlador de evento para restaurar la imagen base cuando el cursor está fuera de las rutas
+    
     document.body.addEventListener("mouseout", function () {
-        cambiarImagen(imagenBaseSrc); // Restaurar la imagen base original
+        cambiarImagen(imagenBaseSrc); 
     });
 
-    // Agregar eventos a cada ruta para cambiar la imagen al pasar el cursor sobre ella
+    
     var rutas = document.getElementsByClassName("ruta");
     for (var i = 0; i < rutas.length; i++) {
         rutas[i].addEventListener("mouseover", function () {
             var idRuta = this.id;
-            cambiarImagen(imagenesRutas[idRuta]); // Llamar a la función para cambiar la imagen
+            cambiarImagen(imagenesRutas[idRuta]); 
         });
     }
 });
+
+//Bruixola
 
 const imagen = document.getElementById('brujula');
 

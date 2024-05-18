@@ -43,16 +43,39 @@
 				<div class="inner">
 					<div class="content">
 						<header>
-							<h2>GESTIÓ DE VAIXELLS</h2>
+							<h2>ATRACAR VAXEILL</h2>
 						</header>
-						<p>ESCRIU LA CONTRASENYA D'ADMINISTRADOR</p>
+						<p>Descripció de la funcionalitat</p>
 						<p></p>
-						
-						<form action="login.php" method = "POST">
-							<table>
-								<input type="password" name="password" placeholder="Contraseña" required>		
+						<form action="gestioVista.php" method = "POST">
+                            <table>
+                                <tr>
+                                    <td>Avió a aterrar:</td>
+                                    <td>
+                                        <?php
+                                        include_once("tcontrol.php");
+                                        //es crida a la funcionalitat que munta el llistat
+                                        $c = new tcontrol();
+                                        $res = $c->llistaAvionsVolant(); //idAvio, tipus, numPassatgers
+                                        echo ($res);
+                                        ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Aeroport:</td>
+                                    <td>
+                                        <?php
+                                        include_once("tcontrol.php");
+                                        //es crida a la funcionalitat que munta el llistat
+                                        $c = new tcontrol();
+                                        $res = $c->llistaAeroports(); //nomAeroport, Ciutat, npistes
+                                        echo ($res);
+                                        ?>
+                                    </td>
+                                </tr>
+									
 							</table>
-							<input type="submit" name = "opcio" value="Entrar" />	
+							<input type="submit" name = "opcio" value="nom de la funcionalitat" />	
 						</form>
 						<p></p>
 						<a href="./gestio.html">Tornar a la llista d'opcions</a>

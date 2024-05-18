@@ -3092,3 +3092,16 @@ html, body {
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.025); }
   .vaixells .content .credit strong {
     color: #ce1b28; }
+
+    .form-horizontal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px; /* Espacio entre los elementos */
+    }
+    .form-horizontal label {
+      margin-left: 5px;
+      margin-right: 20px; /* Espacio entre las etiquetas */
+    }
+    .form-horizontal input[type="radio"] {
+      margin-right: 5px;
+    }

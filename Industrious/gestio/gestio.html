@@ -43,18 +43,22 @@
 				<div class="inner">
 					<div class="content">
 						<header>
-							<h2>GESTIÓ DE VAIXELLS</h2>
+							<h2>TRIA LA TEVA OPCIÓ</h2>
 						</header>
-						<p>ESCRIU LA CONTRASENYA D'ADMINISTRADOR</p>
+						<p>Descripció de la funcionalitat</p>
 						<p></p>
 						
-						<form action="login.php" method = "POST">
-							<table>
-								<input type="password" name="password" placeholder="Contraseña" required>		
-							</table>
-							<input type="submit" name = "opcio" value="Entrar" />	
-						</form>
-						<p></p>
+						<form action="opcioUsuari.php" method = "POST">
+                            <input type="radio" id="radio1" name="opcio" checked value="Enlairar" /><label for="radio1">Enlairar avió</label><br>
+                            <input type="radio" id="radio2" name="opcio" value="Aterrar" /><label for="radio2">Aterrar avió</label>	<br>
+                            <input type="radio" id="radio3" name="opcio" value="Volant" /><label for="radio3">Llistat d'avions volant</label><br>
+                            <input type="radio" id="radio4" name="opcio" value="Aterrats" /><label for="radio4">Llistat d'avions d'un aeroport</label><br>
+                            <br>
+                            <br>
+                            <hr>
+                            <input type="submit" value="Tria opció" />	
+                        </form>
+                        <p></p>
 						<a href="./gestio.html">Tornar a la llista d'opcions</a>
 					</div>
 				</div>

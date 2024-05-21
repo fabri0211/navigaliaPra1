@@ -48,7 +48,7 @@
 						<p>Se li assigna un port de detí a un vaixell i el vaixell comença la seva travesía</p>
 						<p></p>
 						
-						<form action="fitxer.php" method = "POST">
+						<form action="gestioVista.php" method = "POST">
 							<table>
 								<tr>
 									<td>Vaixell:</td>
@@ -57,7 +57,7 @@
 										include_once("tcontrol.php");
 										// es crida a la funcionalitat que munta el llistat
 										$c = new tcontrol();
-										$res = $c->llistaVaixellsAtracats(); //idAvio, numPassatgers i aeroport on està
+										$res = $c->llistaVaixellsAtracats(); //idAvio, numPassatgers i port on està
 										echo ($res);										
 										?>
 									</td>
@@ -68,7 +68,7 @@
 									include_once("tcontrol.php");
 									// es crida a la funcionalitat que munta el llistat
 									$c = new tcontrol();
-									$res = $c->llistaPorts(); //idAvio, numPassatgers i aeroport on està
+									$res = $c->llistaPorts(); //idAvio, numPassatgers i port on està
 									echo ($res);
 									?>
 								</td>

@@ -3,15 +3,15 @@
 include_once ("taccesbd.php");
 class Tport
 {
-    private $nom;
+    private $codi;
     private $ciutat;
-    private $nPistes;
+    private $capacitat;
     private $abd;
-    function __construct($v_nom, $v_ciutat, $v_nPistes, $servidor, $usuari, $paraula_pas, $nom_bd)
+    function __construct($v_codi, $v_ciutat, $v_capacitat, $servidor, $usuari, $paraula_pas, $nom_bd)
     {
-        $this->nom = $v_nom;
+        $this->codi = $v_codi;
         $this->ciutat = $v_ciutat;
-        $this->nPistes = $v_nPistes;
+        $this->nPistes = $v_capacitat;
         $var_abd = new TAccesbd($servidor,$usuari,$paraula_pas,$nom_bd);
         $this->abd = $var_abd;
         $this->abd->connectar_BD();
@@ -28,16 +28,16 @@ class Tport
     public function llistaVaixells()
     {
         $res = false;
-        if ($this->abd->consulta_SQL("select nom, ciutat from port order by nom"))
+        if ($this->abd->consulta_SQL("select codi, ciutat from port order by codi"))
         {   
             $fila = $this->abd->consulta_fila();
             $res =  "<select name='port'>";
             while ($fila != null)
             {
-                $nom = $this->abd->consulta_dada('nom');
+                $codi = $this->abd->consulta_dada('codi');
                 $ciutat = $this->abd->consulta_dada('ciutat');
                             
-                $res = $res . "<option value='" . $fila["nom"] . "'>".$fila["nom"]." - " . $fila["ciutat"]. "</option>";
+                $res = $res . "<option value='" . $fila["codi"] . "'>".$fila["ciutat"]." - " . $fila["ciutat"]. "</option>";
                
                 $fila = $this->abd->consulta_fila();
             }

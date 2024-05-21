@@ -50,32 +50,32 @@
 						<form action="gestioVista.php" method = "POST">
                             <table>
                                 <tr>
-                                    <td>Avió a aterrar:</td>
+                                    <td>Vaixell a atracar:</td>
                                     <td>
                                         <?php
                                         include_once("tcontrol.php");
                                         //es crida a la funcionalitat que munta el llistat
                                         $c = new tcontrol();
-                                        $res = $c->llistaAvionsVolant(); //idAvio, tipus, numPassatgers
+                                        $res = $c->llistaVaixellsNavegant(); //idVaixell, nom, numPassatgers
                                         echo ($res);
                                         ?>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Aeroport:</td>
+                                    <td>Port:</td>
                                     <td>
                                         <?php
                                         include_once("tcontrol.php");
                                         //es crida a la funcionalitat que munta el llistat
                                         $c = new tcontrol();
-                                        $res = $c->llistaAeroports(); //nomAeroport, Ciutat, npistes
+                                        $res = $c->llistaPorts(); //nomVaixell, Ciutat, nports
                                         echo ($res);
                                         ?>
                                     </td>
                                 </tr>
 									
 							</table>
-							<input type="submit" name = "opcio" value="nom de la funcionalitat" />	
+							<input type="submit" name = "opcio" value="Atracar" />	
 						</form>
 						<p></p>
 						<a href="./gestio.html">Tornar a la llista d'opcions</a>

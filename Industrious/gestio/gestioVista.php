@@ -22,40 +22,40 @@ if (isset($_POST["opcio"]))
 	$opcio = $_POST["opcio"];
 	switch ($opcio)
 	{
-		case "Enlairar":
+		case "Salpar":
 		{
-			if (isset($_POST["idAvio"]) )
+			if (isset($_POST["idVaixell"]) )
 			{
-				$id = $_POST["idAvio"];
+				$id = $_POST["idVaixell"];
 				$c = new tcontrol();	
-				$res = $c->enlairar($id);
+				$res = $c->salpar($id);
 				if ($res)
 				{
-					mostrarMissatge("Avió enlairat correctament");
+					mostrarMissatge("Vaixell salpat correctament");
 				}
 				else
 				{
-					mostrarError("Error en enlairar l'avió");
+					mostrarError("Error en salpar vaixel");
 				}
 			}
 			break;
 		}
 
-		case "Aterrar":
+		case "Atracar":
 		{
-			if (isset($_POST["idAvio"]) && isset($_POST["aeroport"]) )
+			if (isset($_POST["idVaixell"]) && isset($_POST["port"]) )
 			{
-				$id = $_POST["idAvio"];
-				$aero = $_POST["aeroport"];
+				$id = $_POST["idVaixell"];
+				$port = $_POST["port"];
 				$c = new tcontrol();
-				$res = $c->aterrar($id, $aero);
+				$res = $c->atracar($id, $port);
 				if ($res)
 				{
-					mostrarMissatge("Avió aterrat correctament a l'aeroport");
+					mostrarMissatge("Vaixell atracat correctament");
 				}
 				else
 				{
-					mostrarError("Error en aterrar l'avió");
+					mostrarError("Error al atracar vaixell");
 				}
 			}
 			break;
@@ -63,18 +63,18 @@ if (isset($_POST["opcio"]))
 
 		case "Llistat":
 		{
-			if (isset($_POST["aeroport"]))
+			if (isset($_POST["port"]))
 			{
-				$aeroport = $_POST["aeroport"];
+				$port = $_POST["port"];
 				$c = new TControl();
-				$res = $c->llistatAvionsAeroport($aeroport);
+				$res = $c->llistatVaixellsAtracats($aeroport);
 				if ($res)
 				{
 					mostrarMissatge($res);
 				}
 				else
 				{
-					mostrarError("Error en generar la llista d'avions aterrats a $aeroport");
+					mostrarError("Error en generar la llista de vaixells atracats a $port");
 				}
 			}
 			break;	

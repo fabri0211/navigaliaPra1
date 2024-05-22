@@ -39,7 +39,7 @@ class TControl
 	public function totalAtracats()
 	{
 		$res = 0;
-		$av = new TVaixell ("","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$av = new TVaixell ("","","","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
         $res = $av->totalAtracats();
         return $res;
 	}
@@ -47,7 +47,7 @@ class TControl
 	public function totalNavegant()
 	{
 		$res = 0;
-		$av = new TVaixell ("","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$av = new TVaixell ("","","","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
         $res = $av->totalNavegant();
         return $res;
 	}
@@ -55,7 +55,7 @@ class TControl
 	public function llistaVaixellsAtracats()
 	{
 		$res = 0;
-		$av = new TVaixell ("","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$av = new TVaixell ("","","","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
 		$res = $av->llistaVaixellsAtracats();
 		return $res;
 	}
@@ -63,7 +63,7 @@ class TControl
 	public function llistaVaixellsNavegant()
 	{
 		$res = 0;
-		$av = new TVaixell ("","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$av = new TVaixell ("","","","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
 		$res = $av->llistaVaixellsNavegant();
 		return $res;
 	}
@@ -71,7 +71,7 @@ class TControl
 	public function llistaPorts()
 	{
 		$res = 0;
-		$ae = new Tport("","",0,$this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);	
+		$ae = new Tport("","","",$this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);	
 		$res = $ae->llistaPorts();
 		return $res;
 	}
@@ -79,26 +79,26 @@ class TControl
 	
 	////////// Mètodes per a realitzar les opcions de menú
 	
-	public function salpar($idVaixell)
+	public function atracar($idVaixell)
 	{
 		$res = 0;
-		$av = new TVaixell ($idVaixell,"","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
-		$res = $av->salpar();
+		$av = new TVaixell ($idVaixell,"","","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$res = $av->atracar();
 		return $res;
 	}
 
-	public function atracar($idVaixell, $idPort)
+	public function salpar($idVaixell, $idPortDesti)
 	{
 		$res = 0;
-		$av = new TVaixell ($idVaixell,"","",$idPort, $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
-		$res = $av->atracar();
+		$av = new TVaixell ($idVaixell,"","","",$idPortDesti,"", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$res = $av->salpar();
 		return $res;
 	}
 
 	public function llistatNavegant ()
 	{
 		$res = 0;
-		$ae = new TVaixell ("","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$ae = new TVaixell ("","","","","","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
 		$res = $ae->llistatNavegant();
 		return $res;
 	}
@@ -106,7 +106,7 @@ class TControl
 	public function llistatVaixellsAtracats ($port)
 	{
 		$res = 0;
-		$ae = new TVaixell ("","","",$port, $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$ae = new TVaixell ("","","",$portOrigen,"","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
 		$res = $ae->llistatVaixellsAtracats();
 		return $res;
 	}

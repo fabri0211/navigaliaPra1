@@ -20,40 +20,40 @@ if (isset($_POST["opcio"]))
 	$opcio = $_POST["opcio"];
 	switch ($opcio)
 	{
-		case "Salpar":
-		{
-			if (isset($_POST["idVaixell"]) )
-			{
-				$id = $_POST["idVaixell"];
-				$c = new tcontrol();	
-				$res = $c->salpar($id);
-				if ($res)
-				{
-					mostrarMissatge("Vaixell salpat correctament");
-				}
-				else
-				{
-					mostrarError("Error en salpar vaixel");
-				}
-			}
-			break;
-		}
-
 		case "Atracar":
 		{
-			if (isset($_POST["idVaixell"]) && isset($_POST["port"]) )
+			if (isset($_POST["id"]) )
 			{
-				$id = $_POST["idVaixell"];
-				$port = $_POST["port"];
-				$c = new tcontrol();
-				$res = $c->atracar($id, $port);
+				$id = $_POST["id"];
+				$c = new tcontrol();	
+				$res = $c->atracar($id);
 				if ($res)
 				{
 					mostrarMissatge("Vaixell atracat correctament");
 				}
 				else
 				{
-					mostrarError("Error al atracar vaixell");
+					mostrarError("Error en atracar vaixel");
+				}
+			}
+			break;
+		}
+
+		case "Salpar":
+		{
+			if (isset($_POST["idVaixell"]) && isset($_POST["idPortDesti"]) )
+			{
+				$id = $_POST["idVaixell"];
+				$port = $_POST["idPortDesti"];
+				$c = new tcontrol();
+				$res = $c->salpar($id, $port);
+				if ($res)
+				{
+					mostrarMissatge("Vaixell salpat correctament");
+				}
+				else
+				{
+					mostrarError("Error al salpar vaixell");
 				}
 			}
 			break;

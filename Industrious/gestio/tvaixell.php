@@ -7,13 +7,17 @@ class TVaixell
     private $nom;
     private $numPassatgers;
     private $portOrigen;
+    private $portDesti;
+    private $imatge;
     private $abd;
-    function __construct($v_id, $v_nom, $v_numPassatgers, $v_portOrigen, $servidor, $usuari, $paraula_pas, $nom_bd)
+    function __construct($v_id, $v_nom, $v_numPassatgers, $v_portOrigen, $v_portDesti, $v_imatge, $servidor, $usuari, $paraula_pas, $nom_bd)
     {
-        $this->idAvio = $v_id;
-        $this->tipus = $v_nom;
-        $this->nPass = $v_numPassatgers;
-        $this->aeroport = $v_portOrigen;
+        $this->id = $v_id;
+        $this->nom = $v_nom;
+        $this->numPassatgers = $v_numPassatgers;
+        $this->portOrigen = $v_portOrigen;
+        $this->portDesti = $v_portDesti;
+        $this->imatge = $v_imatge;
         $var_abd = new TAccesbd($servidor,$usuari,$paraula_pas,$nom_bd);
         $this->abd = $var_abd;
         $this->abd->connectar_BD();
@@ -30,7 +34,7 @@ class TVaixell
     public function totalAtracats()
 	{
 		$res = 0;
-        $sql = "select count(*) as quants from vaixell where port is not null";
+        $sql = "select count(*) as quants from vaixell where portDesti is null";
 	
         if ($this->abd->consulta_SQL($sql) )
         {
@@ -46,7 +50,7 @@ class TVaixell
 	public function totalNavegant()
 	{
         $res = 0;
-		$sql = "select count(*) as quants from vaixell where port is null";
+		$sql = "select count(*) as quants from vaixell where portDesti is not null";
 		if ($this->abd->consulta_SQL($sql) )
         {
             if ($this->abd->consulta_fila())
@@ -59,13 +63,13 @@ class TVaixell
 
     public function llistaVaixellsNavegant()
     {
-        $res = $this->llistaVaixells("select id, nom, numPassatgers from vaixell where port is null");
+        $res = $this->llistaVaixells("select id, nom, numPassatgers from vaixell where portDesti is not null");
         return $res;
     }
 
     public function llistaVaixellsAtracats()
     {
-        $res = $this->llistaVaixells("select id, nom, numPassatgers from vaixell where port is not null");
+        $res = $this->llistaVaixells("select id, nom, numPassatgers from vaixell where portDesti is null");
         return $res;
     }
 
@@ -106,7 +110,7 @@ class TVaixell
 	{
         
 		$res = false;
-        $sql = "update vaixell set port = null where id = '$this->id'";
+        $sql = "update vaixell set portDesti = null where id = '$this->id'";
         if ($this->abd->consulta_SQL($sql))
         {
             $res = true;      
@@ -118,7 +122,7 @@ class TVaixell
 	function atracar ()
 	{
         $res = false;
-        $sql = "update vaixell set port = '$this->port' where id = '$this->id'";
+        $sql = "update vaixell set portDesti = '$this->port' where id = '$this->id'";
         if ($this->abd->consulta_SQL($sql))
         {
             $res = true;       
@@ -129,7 +133,7 @@ class TVaixell
     public function llistatNavegant()
     {
         $res = false;
-        if ($this->abd->consulta_SQL("select * from vaixell where port is null"))
+        if ($this->abd->consulta_SQL("select * from vaixell where portDesti is not null"))
         {   
             $fila = $this->abd->consulta_fila();
             $res =  "<table border=1><tr bgcolor='lightgray'>

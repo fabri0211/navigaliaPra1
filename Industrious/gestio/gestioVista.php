@@ -22,11 +22,12 @@ if (isset($_POST["opcio"]))
 	{
 		case "Atracar":
 		{
-			if (isset($_POST["id"]) )
+			if (isset($_POST["id"]) && isset($_POST["port"]) )
 			{
 				$id = $_POST["id"];
-				$c = new tcontrol();	
-				$res = $c->atracar($id);
+				$c = new tcontrol();
+				$port = $_POST["port"];	
+				$res = $c->salpar($id, $port);
 				if ($res)
 				{
 					mostrarMissatge("Vaixell atracat correctament");
@@ -65,7 +66,7 @@ if (isset($_POST["opcio"]))
 			{
 				$port = $_POST["port"];
 				$c = new TControl();
-				$res = $c->llistatVaixellsAtracats($aeroport);
+				$res = $c->llistatVaixellsAtracats($port);
 				if ($res)
 				{
 					mostrarMissatge($res);

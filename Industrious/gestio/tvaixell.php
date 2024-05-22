@@ -125,7 +125,7 @@ class TVaixell
 	function atracar ()
 	{
         $res = false;
-        $sql = "update vaixell set portDesti = '" . $this->codi ."' where id = '". $this->id ."';";
+        $sql = "UPDATE vaixell SET portOrigen = '" . $this->portDesti ."' WHERE id = '". $this->id ."';";
         if ($this->abd->consulta_SQL($sql))
         {
             $res = true;       
@@ -178,7 +178,7 @@ class TVaixell
 	{
         
 		$res = false;
-        $sql = "select codi, ciutat, capacitat from port where codi = '$this->port'";
+        $sql = "SELECT codi, ciutat, capacitat FROM port WHERE codi = '$this->portOrigen'";
 
         if ($this->abd->consulta_SQL($sql))
         {
@@ -187,7 +187,7 @@ class TVaixell
             $ciutat = $this->abd->consulta_dada('ciutat');
             $capacitat = $this->abd->consulta_dada('capacitat');
             $res = $this->escriuCapsalera ($codi, $ciutat, $capacitat);
-            $sql = "select id, nom, numPassatgers from vaixell where port = '$this->port'";
+            $sql = "SELECT id, nom, numPassatgers FROM vaixell WHERE port = '$this->portOrigen'";
             if ($this->abd->consulta_SQL($sql))
             {   
                 $fila = $this->abd->consulta_fila();

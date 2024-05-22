@@ -41,10 +41,10 @@ if (isset($_POST["opcio"]))
 
 		case "Salpar":
 		{
-			if (isset($_POST["idVaixell"]) && isset($_POST["idPortDesti"]) )
+			if (isset($_POST["id"]) && isset($_POST["port"]) )
 			{
-				$id = $_POST["idVaixell"];
-				$port = $_POST["idPortDesti"];
+				$id = $_POST["id"];
+				$port = $_POST["port"];
 				$c = new tcontrol();
 				$res = $c->salpar($id, $port);
 				if ($res)

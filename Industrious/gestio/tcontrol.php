@@ -87,10 +87,10 @@ class TControl
 		return $res;
 	}
 
-	public function salpar($idVaixell, $idPortDesti)
+	public function salpar($id, $portDesti)
 	{
 		$res = 0;
-		$av = new TVaixell ($idVaixell,"","","",$idPortDesti,"", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+		$av = new TVaixell ($id,"","","",$portDesti,"", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
 		$res = $av->salpar();
 		return $res;
 	}

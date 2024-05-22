@@ -93,8 +93,9 @@ class TVaixell
                     $nom = $this->abd->consulta_dada('nom'); 
                     $numPassatgers = $this->abd->consulta_dada('numPassatgers');
                     
+                    
                     $res = $res . "<option value='" . $id . "'>";
-                    $res = $res . "$id - $nom - $numPassatgers passatgers </option>";
+                    $res = $res . "ID : $id - $nom - $numPassatgers </option>";
                     $fila = $this->abd->consulta_fila();
                 }
                 $res = $res . "</select>";
@@ -110,7 +111,9 @@ class TVaixell
 	{
         
 		$res = false;
-        $sql = "update vaixell set portDesti = null where id = '$this->id'";
+        $sql = "UPDATE vaixell SET portDesti = '" . $this->portDesti . "', id = NULL WHERE id = " . $this->id . ";";
+        
+
         if ($this->abd->consulta_SQL($sql))
         {
             $res = true;      

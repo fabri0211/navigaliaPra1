@@ -1,21 +1,21 @@
 <?php
 header("Content-Type: text/html;charset=utf-8");
 include_once ("tcontrol.php");
+//include_once ("tpass.php");
+//include_once ("tport.php");
+//include_once ("tvaixell.php");
 
 function mostrarError ($missatge)
 {
-	include_once("missatgeCap.html");
-	echo "$missatge";
-	include_once("missatgePeu.html");
-}
-
+	include_once("missatge.html");
+			
+};
 
 function mostrarMissatge ($missatge)
 {
-	include_once("missatgeCap.html");
-	echo "$missatge";
-	include_once("missatgePeu.html");
-}
+	include_once("missatge.html");
+			
+};
 
 //////////////////////////// CODI /////////////////////
 

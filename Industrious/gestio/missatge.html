@@ -39,30 +39,17 @@
 			</section>
 
 		<!-- Main -->
-			<section id="main" class="wrapper">
-				<div class="inner">
-					<div class="content">
-						<header>
-							<h2>TRIA LA TEVA OPCIÓ</h2>
-						</header>
-						<p>Descripció de la funcionalitat</p>
-						<p></p>
-						
-						<form action="opcioUsuari.php" method = "POST">
-                            <input type="radio" id="radio1" name="opcio" checked value="Salpar" /><label for="radio1">Salpar Vaixell</label><br>
-                            <input type="radio" id="radio2" name="opcio" value="Atracar" /><label for="radio2">Atracar Vaixell</label>	<br>
-                            <input type="radio" id="radio3" name="opcio" value="Navegant" /><label for="radio3">Llistat de vaixells navegant</label><br>
-                            <input type="radio" id="radio4" name="opcio" value="Atracats" /><label for="radio4">Llistat de vaixells atracats</label><br>
-                            <br>
-                            <br>
-                            <hr>
-                            <input type="submit" value="Tria opció" />	
-                        </form>
-                        <p></p>
-						<a href="./gestio.html">Tornar a la llista d'opcions</a>
-					</div>
-				</div>
-			</section>
+        <section id="main" class="wrapper">
+            <div class="inner">
+                <div class="content">
+                    <header>
+                        <h2><?php echo $missatge; ?></h2>
+                    </header>
+                    <p></p>
+                    <a href="./gestio.html">Tornar a la llista d'opcions</a>
+                </div>
+            </div>
+        </section>
 
 		<!-- Footer -->
 		<footer id="footer">

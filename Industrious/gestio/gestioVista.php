@@ -4,16 +4,14 @@ include_once("tcontrol.php");
 
 function mostrarError ($missatge)
 {
-	include_once("missatgeCap.html");
-	echo "$missatge";
-	include_once("missatgePeu.html");		
+	include_once("missatge.html");
+			
 };
 
 function mostrarMissatge ($missatge)
 {
-	include_once("missatgeCap.html");
-	echo "$missatge";
-	include_once("missatgePeu.html");		
+	include_once("missatge.html");
+			
 };
 
 // Aquí van les opcions de menú que necessiten demanar a l'usuari alguna dada addicional 

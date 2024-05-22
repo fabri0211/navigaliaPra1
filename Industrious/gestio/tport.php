@@ -11,7 +11,7 @@ class Tport
     {
         $this->codi = $v_codi;
         $this->ciutat = $v_ciutat;
-        $this->nPistes = $v_capacitat;
+        $this->capacitat = $v_capacitat;
         $var_abd = new TAccesbd($servidor,$usuari,$paraula_pas,$nom_bd);
         $this->abd = $var_abd;
         $this->abd->connectar_BD();

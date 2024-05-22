@@ -1,28 +1,42 @@
 <?php
-class TPass {
-    private function __construct($host, $user, $password, $database) {
-        $this->conn - new mysqli($host, $user, $password, $database);
+//Classe de MODEL encarregada de la gestió de la taula AVIO de la base de dades
+include_once ("taccesbd.php");
+class TPass
+{
+    private $pass;
+    private $abd;
+    function __construct($v_pass, $servidor, $usuari, $paraula_pas, $nom_bd)
+    {
+        
+        $this->pass = $v_pass;
+        $var_abd = new TAccesbd($servidor,$usuari,$paraula_pas,$nom_bd);
+        $this->abd = $var_abd;
+        $this->abd->connectar_BD();
+    }
 
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+    function __destruct()
+    {
+        if (isset($this->abd))
+        {
+        unset($this->abd);
         }
     }
 
-    public function comprovarParaulaPas($paraula_pas){
-        $stnt - $this->conn->prepare("SELECT * FROM PASS WHERE paraulaPas -?");
-        $stnt->bind_param("s", $paraula_pas);
-        $stnt->execute();
-        $result - $stnt->get_result();
+    public function loginCheck()
+	{
+		$res = 0;
+        $sql = "select count(*) as quants from pass where paraulaPas = '$this->pass'";
+	
+        if ($this->abd->consulta_SQL($sql) )
+        {
+			
+            if ($this->abd->consulta_fila())
+            {
+                $res = ($this->abd->consulta_dada('quants'));
+                
 
-        if ($result->num_rowa > 0) {
-            return true;
-        } else{
-            return false;
+           } 
         }
-    }
-    
-    public function __destruct() {
-        $this->conn->close();
-    }
+        return $res;
+	}
 }
-?>

@@ -5,6 +5,10 @@ header("Content-Type: text/html;charset=utf-8");
 include_once ("tpass.php");
 include_once ("tport.php");
 include_once ("tvaixell.php");
+include_once ("taccesbd.php");
+include_once ("tcontrol.php");
+
+
 
 
 class TControl
@@ -21,7 +25,16 @@ class TControl
 		$this->nom_bd = "navegalia";
 	}
 
+	
+
 	////////////// Mètodes per a muntar llistes desplegables als fitxers HTML i comprovacions de VISTA
+
+	public function loginCheck($pass) {
+		$res = 0;
+		$av = new TPass ($pass, $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);
+        $res = $av->loginCheck();
+        return $res;
+	}
 	
 	public function totalAtracats()
 	{

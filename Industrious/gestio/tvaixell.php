@@ -111,7 +111,7 @@ class TVaixell
 	{
         
 		$res = false;
-        $sql = "UPDATE vaixell SET portDesti = '" . $this->portDesti . "', id = NULL WHERE id = " . $this->id . ";";
+        $sql = "UPDATE vaixell SET portDesti = '" . $this->portDesti . "' WHERE id = " . $this->id . ";";
         
 
         if ($this->abd->consulta_SQL($sql))
@@ -125,7 +125,7 @@ class TVaixell
 	function atracar ()
 	{
         $res = false;
-        $sql = "update vaixell set portDesti = '$this->port' where id = '$this->id'";
+        $sql = "update vaixell set portDesti = '" . $this->codi ."' where id = '". $this->id ."';";
         if ($this->abd->consulta_SQL($sql))
         {
             $res = true;       

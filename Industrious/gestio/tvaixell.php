@@ -223,11 +223,13 @@ class TVaixell
                     $id = $this->abd->consulta_dada('id');
                     $nom = $this->abd->consulta_dada('nom');
                     $numPassatgers = $this->abd->consulta_dada('numPassatgers');
+                    $imatge = $this->abd->consulta_dada('imatge');
     
                     $res .= "<tr>";
                     $res .= "<td align='center'> $id </td>";
                     $res .= "<td align='center'> $nom </td>";
                     $res .= "<td align='center'> $numPassatgers </td>";
+                    $res = $res . "<td><img src='$imatge' alt='Imatge de $nom' width='100' height='70'></td>";
                     $res .= "</tr>";
     
                     $fila = $this->abd->consulta_fila();

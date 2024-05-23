@@ -118,6 +118,9 @@ class TVaixell
         {
             $res = true;      
         }
+
+        $res = false;
+        $sql = "UPDATE port SET numVaixells = numVaixells -1 WHERE codi";
     
         return $res;
 	}

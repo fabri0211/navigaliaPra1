@@ -119,8 +119,13 @@ class TVaixell
             $res = true;      
         }
 
-        $res = false;
-        $sql = "UPDATE port SET numVaixells = numVaixells -1 WHERE codi";
+        $res = false; // un subselect del port origen que ja saps
+        $sql = "UPDATE port SET numVaixells = numVaixells -1
+        WHERE codi = (SELECT portOrigen FROM vaixell WHERE id = " .$this->id .");";
+        if ($this->abd->consulta_SQL($sql))
+        {
+            $res = true;      
+        }
     
         return $res;
 	}
@@ -128,11 +133,21 @@ class TVaixell
 	function atracar ()
 	{
         $res = false;
-        $sql = "UPDATE vaixell SET portOrigen = '" . $this->portDesti ."' WHERE id = '". $this->id ."';";
+        $sql = "UPDATE vaixell SET portOrigen = portDesti, portDesti = null WHERE id = '$this->id'";
+
         if ($this->abd->consulta_SQL($sql))
         {
-            $res = true;       
+            $res = true;      
         }
+
+        $res = false;
+        $sql = "UPDATE port SET numVaixells = numVaixells +1
+        WHERE codi = (SELECT portOrigen FROM vaixell WHERE id = " .$this->id .");";
+        if ($this->abd->consulta_SQL($sql))
+        {
+            $res = true;      
+        }
+
         return $res;
 	}
 

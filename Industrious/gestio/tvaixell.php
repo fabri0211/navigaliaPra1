@@ -158,18 +158,25 @@ class TVaixell
         {   
             $fila = $this->abd->consulta_fila();
             $res =  "<table border=1><tr bgcolor='lightgray'>
-                        <th>id</th><th>nom</th><th>numPassatgers</th>
+                        <th>ID Vaixell</th><th>Nom</th><th>Passatgers</th><th>Origen</th><th>Desti</th><th></th>
                     </tr> ";
             while ($fila != null)
             {
                 $id = $this->abd->consulta_dada('id');
                 $nom = $this->abd->consulta_dada('nom');
                 $numPassatgers = $this->abd->consulta_dada('numPassatgers');
+                $portOrigen = $this->abd->consulta_dada('portOrigen');
+                $portDesti = $this->abd->consulta_dada('portDesti');
+                $imatge = $this->abd->consulta_dada('imatge');
+                
    
                 $res = $res . "<tr>";
                 $res = $res . "<td>$id</td>";
                 $res = $res . "<td>$nom</td>";
-                $res = $res . "<td align='right'>$numPassatgers</td>";
+                $res = $res . "<td>$numPassatgers</td>";
+                $res = $res . "<td>$portOrigen</td>";
+                $res = $res . "<td>$portDesti</td>";
+                $res = $res . "<td><img src='$imatge' alt='Imatge de $nom' width='100' height='70'></td>";
                 $res = $res . "</tr>";
                 $fila = $this->abd->consulta_fila();
             }
@@ -184,52 +191,54 @@ class TVaixell
     }
 
 
-    private function escriuCapsalera ($codi, $ciutat, $capacitat)
+    private function escriuCapsalera($codi, $ciutat, $capacitat, $numVaixells, $ocupacio)
     {
         $res = "<h1>Dades port</h1>";
-        $res = $res . "<h2>El port de $codi situat a $ciutat te $capacitat molls per atracar</h2><br>";
+        $res .= "<p>El port de $ciutat te $numVaixells vaixells d'un màxim de $capacitat. El seu percentatge d'ocupació és del $ocupacio%</p><br>";
         return $res;
     }
-
-
-    public function llistatVaixellsAtracats ()
-	{
-        
-		$res = false;
-        $sql = "SELECT codi, ciutat, capacitat FROM port WHERE codi = '$this->portOrigen'";
-
+    
+    public function llistatVaixellsAtracats()
+    {
+        $res = false;
+        $sql = "SELECT codi, ciutat, capacitat, numVaixells FROM port WHERE codi = '$this->portOrigen'";
+    
         if ($this->abd->consulta_SQL($sql))
         {
             $fila = $this->abd->consulta_fila();
             $codi = $this->abd->consulta_dada('codi');
             $ciutat = $this->abd->consulta_dada('ciutat');
             $capacitat = $this->abd->consulta_dada('capacitat');
-            $res = $this->escriuCapsalera ($codi, $ciutat, $capacitat);
-            $sql = "SELECT id, nom, numPassatgers FROM vaixell WHERE port = '$this->portOrigen'";
+            $numVaixells = $this->abd->consulta_dada('numVaixells');
+            $ocupacio = ($capacitat != 0) ? ($numVaixells * 100) / $capacitat : 0;
+    
+            $sql = "SELECT id, nom, numPassatgers FROM vaixell WHERE portOrigen = '$this->portOrigen'";
             if ($this->abd->consulta_SQL($sql))
             {   
+                $res = $this->escriuCapsalera($codi, $ciutat, $capacitat, $numVaixells, $ocupacio);
                 $fila = $this->abd->consulta_fila();
-                $res = $res . "<table border=1><tr bgcolor='lightblue'><th>ID Vaixell</th><th>Nom</th><th>Núm. Passatgers</th></tr> ";
+                $res .= "<table border=1><tr bgcolor='lightblue'><th>ID Vaixell</th><th>Nom</th><th>Passatgers</th><th></th></tr>";
                 while ($fila != null)
                 {
                     $id = $this->abd->consulta_dada('id');
                     $nom = $this->abd->consulta_dada('nom');
                     $numPassatgers = $this->abd->consulta_dada('numPassatgers');
-                    
-                    $res = $res . "<tr>";
-                    $res = $res . "<td align='center'> $id </td>";
-                    $res = $res . "<td align='center'> $nom </td>";
-                    $res = $res . "<td align='center'> $numPassatgers </td>";
-                    $res = $res ."</tr>";
-                             
+    
+                    $res .= "<tr>";
+                    $res .= "<td align='center'> $id </td>";
+                    $res .= "<td align='center'> $nom </td>";
+                    $res .= "<td align='center'> $numPassatgers </td>";
+                    $res .= "</tr>";
+    
                     $fila = $this->abd->consulta_fila();
                 }
-                $res = $res . "</table><br>";
+                $res .= "</table><br>";
                 $this->abd->tancar_consulta();
             }
         }
         return $res;
-	}
+    }
+    
 ///////////////////////////////////////////////////
 
 

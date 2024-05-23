@@ -103,7 +103,7 @@ class TControl
 		return $res;
 	}
 
-	public function llistatVaixellsAtracats ($port)
+	public function llistatVaixellsAtracats ($portOrigen)
 	{
 		$res = 0;
 		$ae = new TVaixell ("","","",$portOrigen,"","", $this->servidor, $this->usuari, $this->paraula_pas, $this->nom_bd);

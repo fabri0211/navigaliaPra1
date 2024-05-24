@@ -28,7 +28,7 @@ class Tport
     public function llistaPorts()
     {
         $res = false;
-        if ($this->abd->consulta_SQL("select codi, ciutat from port order by codi"))
+        if ($this->abd->consulta_SQL("select * from port order by codi"))
         {   
             $fila = $this->abd->consulta_fila();
             $res =  "<select name='port'>";
@@ -36,8 +36,11 @@ class Tport
             {
                 $codi = $this->abd->consulta_dada('codi');
                 $ciutat = $this->abd->consulta_dada('ciutat');
+                $capacitat = $this->abd->consulta_dada('capacitat');
+                $numVaixells = $this->abd->consulta_dada('numVaixells');
+                $ocupacio = ($capacitat != 0) ? round(($numVaixells * 100) / $capacitat) : 0;
                             
-                $res = $res . "<option value='" . $fila["codi"] . "'>".$fila["codi"]." - " . $fila["ciutat"]. "</option>";
+                $res = $res . "<option value='" . $fila["codi"] . "'>". "Codi : " .$fila["codi"]." - " . $fila["ciutat"]. " - " .$fila["numVaixells"]. " de " .$fila["capacitat"]. " Vaixells - Ocupació: " .$ocupacio. "% ". "</option>";
                
                 $fila = $this->abd->consulta_fila();
             }

@@ -73,42 +73,75 @@ class TVaixell
         return $res;
     }*/
     
+    
     public function llistaVaixells2($SQL)
     {
         $res = false;
-
+    
         if ($this->abd->consulta_SQL($SQL))
-        {   
-            $fila = $this->abd->consulta_fila();
-            if ($fila == null)
+        {
+            $vaixells = [];
+    
+            while ($fila = $this->abd->consulta_fila())
+            {
+                $vaixell = [
+                    'id' => $fila['id'],
+                    'nom' => $fila['nom'],
+                    'numPassatgers' => $fila['numPassatgers'],
+                    'portOrigen' => $fila['portOrigen'],
+                    'portDesti' => $fila['portDesti']
+                ];
+                $vaixells[] = $vaixell;
+            }
+    
+            if (empty($vaixells))
             {
                 $res = "<br><h2>Tots els vaixells estan navegant!</h2><br>";
             }
             else
             {
-                $res = "<select  name='id'> ";
-                $ciutatDesti = "SELECT ciutat from vaixell join port on portDesti = codi";
-                while ($fila != null)
+                $res = "<select name='id'> ";
+    
+                foreach ($vaixells as $vaixell)
                 {
-                    $id = $this->abd->consulta_dada('id');
-                    $nom = $this->abd->consulta_dada('nom'); 
-                    $numPassatgers = $this->abd->consulta_dada('numPassatgers');
-                    $portOrigen = $this->abd->consulta_dada('portOrigen');
-                    $portDesti = $this->abd->consulta_dada('portDesti');
-                    $ciutat = $this->abd->consulta_dada('ciutat');
-                    $new = $this->abd->consulta_dada($ciutatDesti);
-
-                    
-                    $res = $res . "<option value='" . $id . "'>";
-                    $res = $res . "ID : $id - $nom - $numPassatgers - $portOrigen($ciutat) --> $portDesti($new) </option>";
-                    $fila = $this->abd->consulta_fila();
+                    $id = $vaixell['id'];
+                    $nom = $vaixell['nom'];
+                    $numPassatgers = $vaixell['numPassatgers'];
+                    $portOrigen = $vaixell['portOrigen'];
+                    $portDesti = $vaixell['portDesti'];
+    
+                    // Obtener ciudad de origen
+                    $ciutatOrigenSQL = "SELECT ciutat FROM port WHERE codi = '$portOrigen'";
+                    if ($this->abd->consulta_SQL($ciutatOrigenSQL)) {
+                        $ciutatOrigenFila = $this->abd->consulta_fila();
+                        $ciutatOrigen = $ciutatOrigenFila['ciutat'];
+                    } else {
+                        $ciutatOrigen = "Desconegut";
+                    }
+    
+                    // Obtener ciudad de destino
+                    $ciutatDestiSQL = "SELECT ciutat FROM port WHERE codi = '$portDesti'";
+                    if ($this->abd->consulta_SQL($ciutatDestiSQL)) {
+                        $ciutatDestiFila = $this->abd->consulta_fila();
+                        $ciutatDesti = $ciutatDestiFila['ciutat'];
+                    } else {
+                        $ciutatDesti = "Desconegut";
+                    }
+    
+                    $res .= "<option value='" . $id . "'>";
+                    $res .= "ID : $id - $nom - $numPassatgers - $portOrigen($ciutatOrigen) --> $portDesti($ciutatDesti) </option>";
                 }
-                $res = $res . "</select>";
+    
+                $res .= "</select>";
             }
+    
             $this->abd->tancar_consulta();
         }
+    
         return $res;
     }
+    
+
 
     public function llistaVaixellsAtracats()
     {
@@ -254,9 +287,9 @@ class TVaixell
             $ciutat = $this->abd->consulta_dada('ciutat');
             $capacitat = $this->abd->consulta_dada('capacitat');
             $numVaixells = $this->abd->consulta_dada('numVaixells');
-            $ocupacio = ($capacitat != 0) ? ($numVaixells * 100) / $capacitat : 0;
+            $ocupacio = ($capacitat != 0) ? round(($numVaixells * 100) / $capacitat) : 0;
     
-            $sql = "SELECT id, nom, numPassatgers FROM vaixell WHERE portOrigen = '$this->portOrigen'";
+            $sql = "SELECT id, nom, numPassatgers, imatge FROM vaixell WHERE portOrigen = '$this->portOrigen'";
             if ($this->abd->consulta_SQL($sql))
             {   
                 $res = $this->escriuCapsalera($codi, $ciutat, $capacitat, $numVaixells, $ocupacio);
@@ -273,7 +306,7 @@ class TVaixell
                     $res .= "<td align='center'> $id </td>";
                     $res .= "<td align='center'> $nom </td>";
                     $res .= "<td align='center'> $numPassatgers </td>";
-                    $res = $res . "<td><img src='$imatge' alt='Imatge de $nom' width='100' height='70'></td>";
+                    $res .="<td><img src='$imatge' alt='Imatge de $nom' width='100' height='70'></td>";
                     $res .= "</tr>";
                     
                     $fila = $this->abd->consulta_fila();

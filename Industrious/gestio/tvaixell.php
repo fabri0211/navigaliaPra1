@@ -63,7 +63,50 @@ class TVaixell
 
     public function llistaVaixellsNavegant()
     {
-        $res = $this->llistaVaixells("SELECT id, nom, numPassatgers, portOrigen, ciutat from vaixell join port on portOrigen = codi where portDesti is not null"); 
+        $res = $this->llistaVaixells2("SELECT id, nom, numPassatgers, portOrigen, portDesti, ciutat from vaixell join port on portOrigen = codi where portDesti is not null"); 
+        return $res;
+    }
+
+    /*public function ciutatDesti()
+    {
+        $res = ("SELECT ciutat from vaixell join port on portDesti = codi");
+        return $res;
+    }*/
+    
+    public function llistaVaixells2($SQL)
+    {
+        $res = false;
+
+        if ($this->abd->consulta_SQL($SQL))
+        {   
+            $fila = $this->abd->consulta_fila();
+            if ($fila == null)
+            {
+                $res = "<br><h2>Tots els vaixells estan navegant!</h2><br>";
+            }
+            else
+            {
+                $res = "<select  name='id'> ";
+                $ciutatDesti = "SELECT ciutat from vaixell join port on portDesti = codi";
+                while ($fila != null)
+                {
+                    $id = $this->abd->consulta_dada('id');
+                    $nom = $this->abd->consulta_dada('nom'); 
+                    $numPassatgers = $this->abd->consulta_dada('numPassatgers');
+                    $portOrigen = $this->abd->consulta_dada('portOrigen');
+                    $portDesti = $this->abd->consulta_dada('portDesti');
+                    $ciutat = $this->abd->consulta_dada('ciutat');
+                    $new = $this->abd->consulta_dada($ciutatDesti);
+
+                    
+                    $res = $res . "<option value='" . $id . "'>";
+                    $res = $res . "ID : $id - $nom - $numPassatgers - $portOrigen($ciutat) --> $portDesti($new) </option>";
+                    $fila = $this->abd->consulta_fila();
+                }
+                $res = $res . "</select>";
+            }
+            $this->abd->tancar_consulta();
+        }
         return $res;
     }
 

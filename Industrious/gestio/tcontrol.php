@@ -19,10 +19,10 @@ class TControl
 	private $nom_bd;
 	function __construct()
 	{
-		$this->servidor = "localhost";
-		$this->usuari = "root";
-		$this->paraula_pas = "usbw";
-		$this->nom_bd = "navegalia";
+		$this->servidor = "fdb1032.awardspace.net";
+		$this->usuari = "4447229_navegalia";
+		$this->paraula_pas = "123456789A";
+		$this->nom_bd = "4447229_navegalia";
 	}
 
 	

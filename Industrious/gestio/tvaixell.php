@@ -63,13 +63,13 @@ class TVaixell
 
     public function llistaVaixellsNavegant()
     {
-        $res = $this->llistaVaixells("select id, nom, numPassatgers from vaixell where portDesti is not null");
+        $res = $this->llistaVaixells("SELECT id, nom, numPassatgers from vaixell where portDesti is not null");
         return $res;
     }
 
     public function llistaVaixellsAtracats()
     {
-        $res = $this->llistaVaixells("select id, nom, numPassatgers from vaixell where portDesti is null");
+        $res = $this->llistaVaixells("SELECT id, nom, numPassatgers from vaixell where portDesti is null");
         return $res;
     }
 
@@ -224,14 +224,14 @@ class TVaixell
                     $nom = $this->abd->consulta_dada('nom');
                     $numPassatgers = $this->abd->consulta_dada('numPassatgers');
                     $imatge = $this->abd->consulta_dada('imatge');
-    
+
                     $res .= "<tr>";
                     $res .= "<td align='center'> $id </td>";
                     $res .= "<td align='center'> $nom </td>";
                     $res .= "<td align='center'> $numPassatgers </td>";
                     $res = $res . "<td><img src='$imatge' alt='Imatge de $nom' width='100' height='70'></td>";
                     $res .= "</tr>";
-    
+                    
                     $fila = $this->abd->consulta_fila();
                 }
                 $res .= "</table><br>";

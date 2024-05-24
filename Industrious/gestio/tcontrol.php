@@ -59,7 +59,7 @@ class TControl
 		$res = $av->llistaVaixellsAtracats();
 		return $res;
 	}
-	
+
 	public function llistaVaixellsNavegant()
 	{
 		$res = 0;
